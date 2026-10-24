@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>In game</title><link rel="stylesheet" href="style.css">
+<style>
+  /* Slot positions. Edit here and the preview follows. / Posições dos espaços. */
+  #cam   { left:1488px; top:390px; width:400px; height:300px; }   /* centered vertically; shape set in config.js */
+  #cards { position:absolute; left:50%; transform:translateX(-50%); bottom:32px; height:72px; display:flex; gap:20px; }
+  #cards .panel { position:relative; width:300px; }
+</style></head>
+<body>
+<div id="cam" class="panel hole" data-box="1488,32,400,1016"><div class="slot-text"><span data-o="t.webcam"></span><br><span class="dim"></span></div></div>
+<div id="cards">
+  <div class="panel card" data-title="t.viewers"><span class="ico"><svg viewBox="0 0 48 48"><path d="M3 24Q24 6 45 24Q24 42 3 24Z"/><circle cx="24" cy="24" r="7"/><circle cx="24" cy="24" r="2.4" fill="currentColor" stroke="none"/></svg></span><div class="slot-text">0</div></div>
+  <div class="panel card" data-title="t.follower"><span class="ico"><svg viewBox="0 0 48 48"><path d="M24 40C11 31 5 24 5 16.5C5 10.5 9.5 6.5 15 6.5C19 6.5 22 8.5 24 11.5C26 8.5 29 6.5 33 6.5C38.5 6.5 43 10.5 43 16.5C43 24 37 31 24 40Z"/></svg></span><div class="slot-text" data-o="t.userName"></div></div>
+  <div class="panel card" data-title="t.sub"><span class="ico"><svg viewBox="0 0 48 48"><path d="M24 5L29.5 18L43.5 19L32.8 28.3L36.2 42L24 34.7L11.8 42L15.2 28.3L4.5 19L18.5 18Z"/></svg></span><div class="slot-text" data-o="t.userName"></div></div>
+</div>
+<script src="config.js"></script><script src="scenes.js"></script>
+</body></html>

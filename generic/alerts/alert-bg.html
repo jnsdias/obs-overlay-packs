@@ -1,0 +1,34 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Alert background</title><link rel="stylesheet" href="../style.css">
+<style>html,body{width:800px;height:150px;background:transparent}body::before,body::after{display:none}svg{position:absolute;inset:0}</style></head><body>
+<svg id="s" viewBox="0 0 800 150" width="800" height="150">
+  <defs>
+    <clipPath id="pc"><rect x="14" y="25" width="772" height="100" rx="6"/></clipPath>
+    <linearGradient id="sw" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect x="14" y="25" width="772" height="100" rx="6" style="fill:var(--panel)"/>
+  <g clip-path="url(#pc)">
+    <rect x="14" y="25" width="772" height="4" style="fill:var(--accent)" opacity=".8"/>
+    <rect id="sweep" y="25" width="200" height="100" fill="url(#sw)" transform="skewX(-20)"/>
+  </g>
+  <rect x="14" y="25" width="772" height="100" rx="6" fill="none" style="stroke:var(--accent)" stroke-width="2.5" stroke-opacity=".8"/>
+  <rect id="l1" x="14" y="25" width="772" height="100" rx="6" fill="none" style="stroke:var(--accent2)" stroke-width="3.5" stroke-linecap="round"/>
+  <rect id="l2" x="14" y="25" width="772" height="100" rx="6" fill="none" style="stroke:var(--accent)" stroke-width="3" stroke-linecap="round" stroke-opacity=".6"/>
+  <g id="cn" fill="none" style="stroke:var(--accent2)" stroke-width="3"><path d="M6 40V17H29"/><path d="M794 110V133H771"/></g>
+</svg>
+<script src="../config.js"></script>
+<script>
+// Fundo de alerta genérico em loop perfeito de 4 s. ?t=segundos fixa o quadro; ?preset=blue troca a cor.
+const T = 4, P = 2 * (772 + 100) - 8 * 6 + 2 * Math.PI * 6, q = new URLSearchParams(location.search);
+function render(t) {
+  const u = t / T;
+  document.getElementById("sweep").setAttribute("x", (-260 + u * 1300));
+  const l1 = document.getElementById("l1"), l2 = document.getElementById("l2");
+  l1.setAttribute("stroke-dasharray", "170 " + (P - 170)); l1.setAttribute("stroke-dashoffset", -u * P);
+  l2.setAttribute("stroke-dasharray", "110 " + (P - 110)); l2.setAttribute("stroke-dashoffset", -(u * P + P / 2));
+  const glow = 9 + 6 * (.5 + .5 * Math.sin(2 * Math.PI * u));
+  document.getElementById("s").style.filter = `drop-shadow(0 0 ${glow}px var(--accent)) drop-shadow(0 3px 3px rgba(0,0,0,.5))`;
+  document.getElementById("cn").style.opacity = (u % .5) > .46 ? .2 : 1;
+}
+if (q.has("t")) render(parseFloat(q.get("t")));
+else { const t0 = performance.now(); (function f(n) { render(((n - t0) / 1000) % T); requestAnimationFrame(f); })(t0); }
+</script></body></html>

@@ -1,0 +1,41 @@
+HORROR STREAM OVERLAY PACK — LICENSE
+Version 1.0
+
+DRAFT: review these terms (and have them checked locally if you sell
+commercially) before publishing. Fill in the bracketed fields.
+
+Copyright (c) [YEAR] [YOUR NAME]. All rights reserved.
+
+1. WHAT YOU GET
+   A personal, non-exclusive, non-transferable license to use this pack
+   (the HTML, CSS, JavaScript and icon files, called "the Pack") for the
+   buyer's own live streams and videos.
+
+2. YOU MAY
+   - Use the Pack on any number of your own channels and accounts.
+   - Use it on monetized channels (ads, subscriptions, donations,
+     sponsorships) and in recordings, clips and VODs of your streams.
+   - Edit the Pack for your own use: texts, colors, positions, language.
+
+3. YOU MAY NOT
+   - Resell, share, sublicense, upload or give away the Pack, edited or not,
+     alone or inside another pack, template or product.
+   - Claim the Pack as your own work.
+   - Use the Pack to train or build a competing overlay product.
+
+4. THIRD-PARTY CONTENT
+   The Metal Mania font (fonts/MetalMania.ttf) is licensed under the SIL Open
+   Font License 1.1. See fonts/OFL.txt. That license applies to the font only.
+
+5. NO WARRANTY
+   The Pack is provided "as is". The author is not liable for losses from its
+   use. It runs in software the author does not control (OBS Studio,
+   Streamlabs Desktop, browsers), and behavior may change with their updates.
+
+6. REFUNDS AND SUPPORT
+   [Describe your refund policy and how to get support.]
+
+7. TERMINATION
+   Breaking these terms ends the license. Delete all copies of the Pack.
+
+Contact: [your email]

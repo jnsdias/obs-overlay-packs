@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Just Chatting</title><link rel="stylesheet" href="style.css">
+<style>
+  /* Posições dos espaços. Ajuste aqui e o preview acompanha. */
+  #cam   { left:32px;   top:120px; width:1100px; height:820px; }
+  #chat  { left:1180px; top:120px; width:708px;  height:820px; }
+  #views { left:32px;   top:32px;  width:353px;  height:72px; }
+  #lfol  { left:405px;  top:32px;  width:353px;  height:72px; }
+  #lsub  { left:778px;  top:32px;  width:354px;  height:72px; }   /* the 3 cards span the webcam area: 32 to 1132 */
+  #bar   { left:32px;   top:972px; width:1856px; height:76px; display:flex; align-items:center; justify-content:space-between; padding:0 36px; }
+  #bar .t { font-size:40px; font-weight:400; letter-spacing:.14em; text-transform:uppercase; text-shadow:0 0 14px var(--blood); }
+  #bar .s { font-size:24px; letter-spacing:.25em; text-transform:uppercase; color:var(--muted); }
+</style></head>
+<body>
+<div id="cam" class="panel hole" data-box="32,120,1100,820"><div class="slot-text"><span data-o="t.webcam"></span><br><span class="dim"></span></div></div>
+<div id="chat" class="panel hole"><div class="slot-text"><span data-o="t.chat"></span><br>708×820</div></div>
+<div id="views" class="panel card" data-title="t.viewers"><span class="ico"><svg viewBox="0 0 48 48"><path d="M3 22Q24 4 45 22Q24 40 3 22Z"/><circle cx="24" cy="22" r="7"/><ellipse cx="24" cy="22" rx="2" ry="5" fill="currentColor" stroke="none"/><path d="M24 34Q21.4 38 21.4 40a2.6 2.6 0 0 0 5.2 0Q26.6 38 24 34Z" fill="currentColor" stroke="none"/></svg></span><div class="slot-text">0</div></div>
+<div id="lfol" class="panel card" data-title="t.follower"><span class="ico"><svg viewBox="0 0 48 48"><path d="M24 40C11 31 5 24 5 16.5C5 10.5 9.5 6.5 15 6.5C19 6.5 22 8.5 24 11.5C26 8.5 29 6.5 33 6.5C38.5 6.5 43 10.5 43 16.5C43 24 37 31 24 40Z"/><path d="M24 11.5L21 18L26 23L22 28L24.5 33" stroke-width="2.4"/><path d="M24 42.2Q21.8 45 21.8 46.3a2.2 2.2 0 0 0 4.4 0Q26.2 45 24 42.2Z" fill="currentColor" stroke="none"/></svg></span><div class="slot-text" data-o="t.userName"></div></div>
+<div id="lsub" class="panel card" data-title="t.sub"><span class="ico"><svg viewBox="0 0 48 48"><path d="M9 22a15 15 0 1 1 30 0v7q0 3-3 3h-3v6H15v-6h-3q-3 0-3-3z"/><circle cx="17.5" cy="23" r="3.5" fill="currentColor" stroke="none"/><circle cx="30.5" cy="23" r="3.5" fill="currentColor" stroke="none"/><path d="M24 28l-2 4h4zM20 32v6M24 32v6M28 32v6" stroke-width="2"/></svg></span><div class="slot-text" data-o="t.userName"></div></div>
+<div id="bar" class="panel"><span class="t" data-o="t.justChatting"></span><span class="s" data-o="handle"></span></div>
+<script src="config.js"></script><script src="scenes.js"></script>
+</body></html>

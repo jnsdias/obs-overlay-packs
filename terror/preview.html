@@ -1,0 +1,77 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Prévia — Terror</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root { --bg:#120a0c; --card:#1b1013; --line:#3a1c22; --text:#eadfd3; --muted:#9a8a84; --red:#b3121f; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.4 system-ui,sans-serif; }
+  header { padding:20px 28px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--bg); z-index:5; }
+  h1 { font-size:20px; margin:0 auto 0 0; letter-spacing:.08em; }
+  label { display:flex; gap:8px; align-items:center; color:var(--muted); cursor:pointer; }
+  button { background:var(--red); color:#fff; border:0; padding:8px 14px; border-radius:6px; cursor:pointer; font:inherit; }
+  button.ghost { background:transparent; border:1px solid var(--line); color:var(--text); }
+  main { padding:28px; display:grid; grid-template-columns:repeat(auto-fill,minmax(520px,1fr)); gap:28px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; }
+  .card h2 { margin:0 0 4px; font-size:16px; } .card p { margin:0 0 10px; color:var(--muted); font-size:13px; }
+  .stage { position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:6px; background:#000; cursor:zoom-in; }
+  .stage iframe { position:absolute; left:0; top:0; width:1920px; height:1080px; border:0; transform-origin:0 0; pointer-events:none; }
+  .game { position:absolute; inset:0; background:linear-gradient(135deg,#1d2a1b,#0d1710 45%,#2b2418); }
+  .game::after { content:"JOGO"; position:absolute; inset:0; display:grid; place-items:center; font:900 220px system-ui; color:rgba(255,255,255,.05); }
+  .meta { color:var(--muted); font-size:12px; margin-top:8px; word-break:break-all; }
+  dialog { border:0; padding:0; background:#000; max-width:96vw; } dialog::backdrop { background:rgba(0,0,0,.85); }
+  .sim-cam,.sim-chat,.sim-alert { position:absolute; z-index:0; }
+  #toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--red); padding:10px 18px; border-radius:8px; opacity:0; transition:.3s; }
+  #toast.on { opacity:1; }
+</style></head>
+<body>
+<header>
+  <h1>PRÉVIA · TEMA TERROR</h1>
+  <label>Language <select id="lang"><option value="">config.js</option><option value="en">English</option><option value="pt">Português</option></select></label>
+  <label>Webcam <select id="cam"><option value="">config.js</option><option value="16:9">16:9 wide</option><option value="4:3">4:3</option><option value="1:1">1:1 square</option><option value="9:16">9:16 vertical</option></select></label>
+  <label><input type="checkbox" id="slots" checked> Mostrar espaços (webcam, chat, alertas)</label>
+  <label><input type="checkbox" id="game" checked> Fundo de jogo simulado</label>
+  <button class="ghost" id="reload">Recarregar</button>
+</header>
+<main id="grid"></main>
+<dialog id="dlg"><div class="stage" id="big" style="width:min(96vw,1700px)"></div></dialog>
+<div id="toast">Caminho copiado</div>
+<script>
+const scenes = [
+  { f:"starting.html", t:"Iniciando", d:"Contagem regressiva. Parâmetro ?min=10 muda os minutos." },
+  { f:"ingame.html",   t:"Em jogo",   d:"Webcam, viewers, novo seguidor e novo sub.", game:true },
+  { f:"justchatting.html", t:"Just Chatting", d:"Webcam grande, chat amplo, viewers, novo seguidor e novo sub. Usa 2 fontes: fundo (embaixo) e moldura (em cima).", bg:"justchatting-bg.html" },
+  { f:"brb.html",     t:"BRB",       d:"Já volto. Fundo translúcido: mostra o conteúdo atrás.", game:true },
+  { f:"ending.html",   t:"Fim",       d:"Encerramento com horário da próxima live." }
+];
+const base = location.href.replace(/preview\.html.*$/, "");
+const grid = document.getElementById("grid");
+function build(host, s) {
+  host.innerHTML = (s.game && document.getElementById("game").checked ? '<div class="game"></div>' : "");
+  const frames = [];
+  if (s.bg) frames.push(mk(s.bg));
+  frames.push(mk(s.f + "?slots=" + (document.getElementById("slots").checked ? 1 : 0) + lq() + cq()));
+  frames.forEach(f => host.appendChild(f));
+  const fit = () => frames.forEach(f => f.style.transform = "scale(" + host.clientWidth / 1920 + ")");
+  fit(); new ResizeObserver(fit).observe(host);
+}
+function cq() { const c = document.getElementById("cam").value; return c ? "&cam=" + c : ""; }
+function lq() { const l = document.getElementById("lang").value; return l ? "&lang=" + l : ""; }
+function mk(src) { const f = document.createElement("iframe"); f.src = src; return f; }
+function render() {
+  grid.innerHTML = "";
+  scenes.forEach(s => {
+    const c = document.createElement("div"); c.className = "card";
+    c.innerHTML = `<h2>${s.t}</h2><p>${s.d}</p><div class="stage"></div>
+      <div class="meta">Fonte do navegador no OBS: <code>${base}${s.f}</code> · 1920×1080${s.bg ? `<br>Fundo (camada de baixo): <code>${base}${s.bg}</code>` : ""} <button class="ghost" style="padding:2px 8px;margin-left:6px">copiar</button></div>`;
+    const st = c.querySelector(".stage");
+    build(st, s);
+    st.onclick = () => { const d = document.getElementById("dlg"), b = document.getElementById("big"); d.showModal(); build(b, s); };
+    c.querySelector("button").onclick = () => { navigator.clipboard.writeText(base.replace("file:///","") + s.f); const t = document.getElementById("toast"); t.classList.add("on"); setTimeout(()=>t.classList.remove("on"),1200); };
+    grid.appendChild(c);
+  });
+}
+document.getElementById("dlg").onclick = e => { if (e.target.id === "dlg") e.target.close(); };
+["slots","game","lang","cam"].forEach(i => document.getElementById(i).onchange = render);
+document.getElementById("reload").onclick = render;
+render();
+</script>
+</body></html>

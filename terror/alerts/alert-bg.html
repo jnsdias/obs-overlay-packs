@@ -1,0 +1,61 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Alert background</title>
+<style>html,body{margin:0;width:800px;height:150px;overflow:hidden;background:transparent}svg{position:absolute;inset:0}</style></head><body>
+<svg id="s" viewBox="0 0 800 150" width="800" height="150">
+  <defs>
+    <linearGradient id="bl" gradientUnits="userSpaceOnUse" x1="0" x2="800" y1="0" y2="0">
+      <stop offset="0" stop-color="#4a070c"/><stop offset=".3" stop-color="#8e121b"/><stop offset=".55" stop-color="#a3161f"/><stop offset=".8" stop-color="#7d0f17"/><stop offset="1" stop-color="#4a070c"/>
+    </linearGradient>
+    <radialGradient id="bg" cx=".5" cy=".5" r=".75"><stop offset="0" stop-color="#26090d"/><stop offset="1" stop-color="#0b0305"/></radialGradient>
+    <clipPath id="pc"><rect x="14" y="25" width="772" height="100" rx="6"/></clipPath>
+  </defs>
+  <g id="fx">
+    <rect x="14" y="25" width="772" height="100" rx="6" fill="url(#bg)" fill-opacity=".94"/>
+    <g clip-path="url(#pc)"><g id="blood"></g></g>
+    <rect id="edge" x="14" y="25" width="772" height="100" rx="6" fill="none" stroke="#b3121f" stroke-width="2.5" stroke-opacity=".75"/>
+    <rect id="l1" x="14" y="25" width="772" height="100" rx="6" fill="none" stroke="#ff6a78" stroke-width="3.5" stroke-linecap="round"/>
+    <rect id="l2" x="14" y="25" width="772" height="100" rx="6" fill="none" stroke="#e0283a" stroke-width="3" stroke-linecap="round" stroke-opacity=".6"/>
+    <g id="cn" fill="none" stroke="#e0283a" stroke-width="3">
+      <path d="M6 40V17H29"/><path d="M794 110V133H771"/>
+    </g>
+  </g>
+</svg>
+<script>
+// Fundo de alerta em loop perfeito de 4 s. ?t=segundos fixa o quadro; sem ?t toca em loop.
+const T = 4, P = 2 * (772 + 100) - 8 * 6 + 2 * Math.PI * 6 * 1; // perímetro aproximado do retângulo arredondado
+const NS = "http://www.w3.org/2000/svg", q = new URLSearchParams(location.search);
+const el = (n, a, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const blood = document.getElementById("blood");
+// faixa de sangue na borda de cima, dentro do painel
+let d = "M0 20H800V" + (36 + rnd() * 6), x = 800;
+while (x > 0) { x -= 40 + rnd() * 60; d += "Q" + (x + 30) + " " + (42 + rnd() * 8) + " " + Math.max(x, 0) + " " + (33 + rnd() * 12); }
+el("path", { d: d + "V20Z", fill: "url(#bl)" }, blood);
+// fios curtos com gota que se solta e cai a cada ciclo
+const drips = []; let px = 40, n = 0;
+while (px < 770) {
+  const w = 3.2 + rnd() * 3.5, L = 56 + rnd() * 24, r = w * 1.1 + 2;
+  drips.push({ cx: px, w, L, r, ph: (n++ * .37) % 1, body: el("path", { fill: "url(#bl)" }, blood), drop: el("path", { fill: "#a3161f" }, blood) });
+  px += 48 + rnd() * 70;
+}
+const tear = (cx, y, r, len) => `M${cx} ${y - len}C${cx - 1} ${y - r} ${cx - r} ${y - r} ${cx - r} ${y}a${r} ${r} 0 1 0 ${2 * r} 0C${cx + r} ${y - r} ${cx + 1} ${y - r} ${cx} ${y - len}Z`;
+function render(t) {
+  const u = t / T, y0 = 28;
+  drips.forEach(k => {
+    const v = (u + k.ph) % 1;
+    const swell = v < .1 ? 1 + .45 * Math.sin(Math.PI * v / .1 / 2) : v < .2 ? 1 + .45 * (1 - (v - .1) / .1) : 1;
+    const r = k.r * swell, len = k.L, { cx, w } = k;
+    k.body.setAttribute("d", `M${cx - w * 2} ${y0}C${cx - w * .5} ${y0 + 10} ${cx - w * .4} ${y0 + len * .5} ${cx - w * .35} ${len - r * 1.2}C${cx - r * 1.1} ${len - r} ${cx - r} ${len + 2} ${cx} ${len + 2}C${cx + r} ${len + 2} ${cx + r * 1.1} ${len - r} ${cx + w * .35} ${len - r * 1.2}C${cx + w * .4} ${y0 + len * .5} ${cx + w * .5} ${y0 + 10} ${cx + w * 2} ${y0}Z`);
+    if (v >= .1 && v < .34) { const dt = (v - .1) * T; const y = len + 4 + 172 * dt * dt / 2 * 1; k.drop.setAttribute("d", tear(cx, y, 3.4, 10)); }
+    else k.drop.setAttribute("d", "");
+  });
+  const ang = u * P, gap = P - 200;
+  const l1 = document.getElementById("l1"), l2 = document.getElementById("l2");
+  l1.setAttribute("stroke-dasharray", "170 " + (P - 170)); l1.setAttribute("stroke-dashoffset", -ang);
+  l2.setAttribute("stroke-dasharray", "110 " + (P - 110)); l2.setAttribute("stroke-dashoffset", -(ang + P / 2));
+  const glow = 10 + 7 * (.5 + .5 * Math.sin(2 * Math.PI * u));
+  document.getElementById("s").style.filter = `drop-shadow(0 0 ${glow}px rgba(224,40,58,.8)) drop-shadow(0 3px 3px rgba(0,0,0,.6))`;
+  const blink = (u % .5) > .46 ? .2 : 1; document.getElementById("cn").style.opacity = blink;
+}
+if (q.has("t")) render(parseFloat(q.get("t")));
+else { const t0 = performance.now(); (function f(n) { render(((n - t0) / 1000) % T); requestAnimationFrame(f); })(t0); }
+</script></body></html>

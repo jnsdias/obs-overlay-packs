@@ -1,0 +1,63 @@
+@font-face { font-family:"Metal Mania"; src:url("fonts/MetalMania.ttf") format("truetype"); font-display:block; }
+:root { --bg:#070304; --panel:rgba(14,6,8,.86); --blood:#b3121f; --blood2:#e0283a; --bone:#e9e0d0; --muted:#8a7b75; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { width:1920px; height:1080px; overflow:hidden; background:transparent; color:var(--bone); font-family:"Metal Mania",Georgia,serif; }
+
+/* Cenas de tela cheia */
+body.solid { background:radial-gradient(900px 600px at 50% 45%, #2a0a0e 0%, var(--bg) 75%); }
+body.solid::before { /* grão */
+  content:""; position:absolute; inset:0; opacity:.16; mix-blend-mode:overlay; pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>");
+  animation:grain .6s steps(4) infinite; }
+body.solid::after { /* vinheta */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.85) 100%); }
+@keyframes grain { 25%{transform:translate(-20px,10px)} 50%{transform:translate(15px,-15px)} 75%{transform:translate(-10px,-20px)} }
+
+.center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:26px; z-index:2; }
+.title { font-size:150px; font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--bone);
+  text-shadow:0 0 18px var(--blood), 0 0 60px var(--blood), 0 6px 0 #000; animation:flicker 5s infinite; }
+.sub { font-size:38px; color:var(--muted); letter-spacing:.35em; text-transform:uppercase; }
+.big { font-size:170px; font-weight:400; font-variant-numeric:tabular-nums; color:var(--blood2); text-shadow:0 0 30px var(--blood); letter-spacing:.06em; }
+.rule { width:520px; height:3px; background:linear-gradient(90deg,transparent,var(--blood),transparent); }
+.footer { position:absolute; bottom:56px; left:0; right:0; text-align:center; font-size:30px; color:var(--muted); letter-spacing:.25em; text-transform:uppercase; z-index:2; }
+@keyframes flicker { 0%,19%,22%,62%,64%,100%{opacity:1} 20%,21%,63%{opacity:.35} }
+.pulse { animation:pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity:.5; } }
+
+/* Moldura rachada / painéis (cena em jogo) */
+.panel { z-index:2; position:absolute; background:var(--panel); border:2px solid var(--blood); box-shadow:0 0 26px rgba(179,18,31,.45), inset 0 0 30px rgba(0,0,0,.7); }
+.panel::before, .panel::after { content:""; position:absolute; width:26px; height:26px; border:3px solid var(--blood2); }
+.panel::before { top:-8px; left:-8px; border-right:0; border-bottom:0; }
+.panel::after { bottom:-8px; right:-8px; border-left:0; border-top:0; }
+.hole { background:transparent; box-shadow:0 0 26px rgba(179,18,31,.45), inset 0 0 0 1px #000; } /* janela vazada: cam/chat */
+.tag { white-space:nowrap; z-index:2; position:absolute; padding:4px 16px; font-size:20px; letter-spacing:.3em; text-transform:uppercase; background:var(--blood); color:var(--bone); font-weight:400; }
+.slot-text { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:rgba(233,224,208,.55); font-size:26px; letter-spacing:.2em; text-transform:uppercase; border:2px dashed rgba(233,224,208,.35); }
+body:not(.show-slots) .slot-text, body:not(.show-slots) .sim { display:none; }
+.sim { position:absolute; color:var(--bone); }
+
+/* Bordas animadas: luz de sangue girando + respiração do brilho + cantos piscando */
+@property --a { syntax:"<angle>"; inherits:false; initial-value:0deg; }
+.panel { animation:breathe 3.2s ease-in-out infinite; }
+@keyframes breathe { 50% { box-shadow:0 0 44px rgba(224,40,58,.7), inset 0 0 30px rgba(0,0,0,.7); } }
+.panel > .edge { position:absolute; inset:-2px; padding:3px; pointer-events:none;
+  background:conic-gradient(from var(--a), transparent 0 62%, var(--blood) 78%, #ff6a78 86%, transparent 94%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation:spin 4.5s linear infinite; }
+.panel > .edge.rev { animation-direction:reverse; animation-duration:7s; opacity:.55; }
+@keyframes spin { to { --a:360deg; } }
+.panel::before, .panel::after { animation:corner 2.6s steps(1) infinite; }
+.panel::after { animation-delay:1.3s; }
+@keyframes corner { 0%,88%{opacity:1} 90%,94%{opacity:.15} 92%,100%{opacity:1} }
+.hole { animation-name:breatheHole; }
+@keyframes breatheHole { 50% { box-shadow:0 0 44px rgba(224,40,58,.7); } }
+
+/* Ícones temáticos dos cards (viewers / seguidor / sub) */
+.card .ico { position:absolute; left:16px; top:50%; width:46px; height:46px; margin-top:-23px; color:var(--blood2); filter:drop-shadow(0 0 8px var(--blood)); animation:pulse 2.6s ease-in-out infinite; }
+.card .ico svg { width:100%; height:100%; fill:none; stroke:currentColor; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+.card .slot-text { left:76px; font-size:20px; letter-spacing:.1em; }
+
+/* BRB translúcido: o conteúdo de trás aparece (opacidade em config.js -> brbOpacity, ou ?brb=0.6) */
+body.solid.see-through { background:radial-gradient(900px 600px at 50% 45%, color-mix(in srgb,#2a0a0e var(--brb-alpha),transparent) 0%, color-mix(in srgb,var(--bg) var(--brb-alpha),transparent) 75%); }
+body.solid.see-through::after { background:radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.45) 100%); }

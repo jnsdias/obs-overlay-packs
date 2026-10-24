@@ -1,0 +1,6 @@
+# local build and scratch files
+_*
+dist/
+*.zip
+Thumbs.db
+.DS_Store
