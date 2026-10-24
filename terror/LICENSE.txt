@@ -1,15 +1,12 @@
 HORROR STREAM OVERLAY PACK — LICENSE
-Version 1.0
+Version 1.1
 
-DRAFT: review these terms (and have them checked locally if you sell
-commercially) before publishing. Fill in the bracketed fields.
-
-Copyright (c) [YEAR] [YOUR NAME]. All rights reserved.
+Copyright (c) 2026 jnsdias. All rights reserved.
 
 1. WHAT YOU GET
    A personal, non-exclusive, non-transferable license to use this pack
    (the HTML, CSS, JavaScript and icon files, called "the Pack") for the
-   buyer's own live streams and videos.
+   user's own live streams and videos.
 
 2. YOU MAY
    - Use the Pack on any number of your own channels and accounts.
@@ -32,10 +29,11 @@ Copyright (c) [YEAR] [YOUR NAME]. All rights reserved.
    use. It runs in software the author does not control (OBS Studio,
    Streamlabs Desktop, browsers), and behavior may change with their updates.
 
-6. REFUNDS AND SUPPORT
-   [Describe your refund policy and how to get support.]
+6. SUPPORT
+   This Pack is free. For questions or problems, contact jnsdias on Twitch
+   or Discord.
 
 7. TERMINATION
    Breaking these terms ends the license. Delete all copies of the Pack.
 
-Contact: [your email]
+Contact: jnsdias on Twitch or Discord.

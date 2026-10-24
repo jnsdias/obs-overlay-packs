@@ -1,10 +1,7 @@
 CLEAN STREAM OVERLAY PACK (FREE) — LICENSE
-Version 0.1
+Version 1.0
 
-DRAFT: the terms below are a suggestion. Decide, edit and fill the bracketed
-fields before publishing the pack.
-
-Copyright (c) [YEAR] [YOUR NAME].
+Copyright (c) 2026 jnsdias.
 
 You may:
   - Use this pack on your own streams and videos, including monetized channels.
@@ -14,11 +11,11 @@ You may not:
   - Sell this pack, edited or not, alone or as part of another product.
   - Claim it as your own work.
 
-Credit is appreciated but not required: [your name / link].
+Credit is appreciated but not required: jnsdias (Twitch / Discord).
 
 The Rajdhani font (fonts/) is licensed under the SIL Open Font License 1.1.
 See fonts/OFL.txt. That license applies to the font only.
 
 The pack is provided "as is", without warranty of any kind.
 
-Contact: [your email]
+Contact: jnsdias on Twitch or Discord.

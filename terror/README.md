@@ -133,4 +133,4 @@ The Metal Mania font is licensed under the SIL Open Font License 1.1 (`fonts/OFL
 
 ## Support
 
-Questions or a problem? Contact: [your email or Discord here]
+Questions or a problem? Contact: jnsdias on Twitch or Discord

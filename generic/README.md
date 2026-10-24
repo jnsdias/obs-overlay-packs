@@ -132,10 +132,10 @@ Untick **Local file** and use the address instead (the folder path below is only
 
 ## License
 
-Free to use on your own streams, including monetized channels. License terms: to be defined before publishing (see `LICENSE.txt`).
+Free to use on your own streams, including monetized channels. You cannot sell the pack or claim it as your own. Full terms in `LICENSE.txt`.
 
 The Rajdhani font is licensed under the SIL Open Font License 1.1 (`fonts/OFL.txt`).
 
 ## Support
 
-Questions or a problem? Contact: [your email or Discord here]
+Questions or a problem? Contact: jnsdias on Twitch or Discord

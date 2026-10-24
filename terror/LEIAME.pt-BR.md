@@ -133,4 +133,4 @@ A fonte Metal Mania está sob a SIL Open Font License 1.1 (`fonts/OFL.txt`).
 
 ## Suporte
 
-Dúvidas ou problemas? Contato: [seu e-mail ou Discord aqui]
+Dúvidas ou problemas? Contato: jnsdias na Twitch ou no Discord

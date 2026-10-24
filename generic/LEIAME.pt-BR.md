@@ -132,10 +132,10 @@ Desmarque **Arquivo local** e use o endereço (o caminho abaixo é só um exempl
 
 ## Licença
 
-Uso livre nas suas próprias lives, inclusive em canais monetizados. Os termos da licença serão definidos antes da publicação (veja `LICENSE.txt`).
+Uso livre nas suas próprias lives, inclusive em canais monetizados. Não é permitido vender o pacote nem se passar pelo autor. Termos completos em `LICENSE.txt` (em inglês).
 
 A fonte Rajdhani está sob a SIL Open Font License 1.1 (`fonts/OFL.txt`).
 
 ## Suporte
 
-Dúvidas ou problemas? Contato: [seu e-mail ou Discord aqui]
+Dúvidas ou problemas? Contato: jnsdias na Twitch ou no Discord
