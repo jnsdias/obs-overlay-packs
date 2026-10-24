@@ -1,8 +1,8 @@
+**English** | [Português](LEIAME.pt-BR.md)
+
 # Stream Overlays
 
 Animated, editable overlays for OBS Studio and Streamlabs Desktop. Plain HTML, CSS and JavaScript, so there is nothing to install: add each file as a Browser Source and edit one `config.js` to make it yours.
-
-Versão em português: cada pacote tem um `LEIAME.pt-BR.md`.
 
 **[Live preview](https://jnsdias.github.io/obs-overlay-packs/)** of both packs in your browser (a demo; to use the overlays, download them).
 

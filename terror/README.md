@@ -1,6 +1,8 @@
+**English** | [Português](LEIAME.pt-BR.md)
+
 # Horror Stream Overlay Pack
 
-Animated horror overlays for OBS Studio and Streamlabs Desktop. Plain HTML, no install, fully editable. (Versão em português: `LEIAME.pt-BR.md`)
+Animated horror overlays for OBS Studio and Streamlabs Desktop. Plain HTML, no install, fully editable.
 
 ## What's inside
 

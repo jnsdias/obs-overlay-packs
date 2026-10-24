@@ -1,6 +1,8 @@
+**English** | [Português](LEIAME.pt-BR.md)
+
 # Clean Stream Overlay Pack (free)
 
-Clean, animated overlays for OBS Studio and Streamlabs Desktop, in 5 color presets. Plain HTML, no install, fully editable. (Versão em português: `LEIAME.pt-BR.md`)
+Clean, animated overlays for OBS Studio and Streamlabs Desktop, in 5 color presets. Plain HTML, no install, fully editable.
 
 ## What's inside
 

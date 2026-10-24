@@ -1,6 +1,8 @@
+[English](README.md) | **Português**
+
 # Pacote de Overlays Limpo para Live (grátis)
 
-Overlays limpos e animados para OBS Studio e Streamlabs Desktop, em 5 presets de cor. HTML puro, sem instalação, totalmente editável. (English version: `README.md`)
+Overlays limpos e animados para OBS Studio e Streamlabs Desktop, em 5 presets de cor. HTML puro, sem instalação, totalmente editável.
 
 ## O que vem no pacote
 

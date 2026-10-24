@@ -1,6 +1,8 @@
+[English](README.md) | **Português**
+
 # Pacote de Overlays de Terror para Live
 
-Overlays animados de terror para OBS Studio e Streamlabs Desktop. HTML puro, sem instalação, totalmente editável. (English version: `README.md`)
+Overlays animados de terror para OBS Studio e Streamlabs Desktop. HTML puro, sem instalação, totalmente editável.
 
 ## O que vem no pacote
 
