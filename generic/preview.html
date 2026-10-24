@@ -21,6 +21,8 @@
   .sim-cam,.sim-chat,.sim-alert { position:absolute; z-index:0; }
   #toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--red); padding:10px 18px; border-radius:8px; opacity:0; transition:.3s; }
   #toast.on { opacity:1; }
+  .demo { background:var(--card); border-bottom:1px solid var(--line); padding:12px 28px; color:var(--muted); font-size:14px; }
+  .demo a { color:var(--text); }
 </style></head>
 <body>
 <header>
@@ -29,10 +31,11 @@
   <label>Effects <select id="fx"><option value="">config.js</option><option value="full">Full</option><option value="calm">Calm</option><option value="none">None</option></select></label>
   <label>Language <select id="lang"><option value="">config.js</option><option value="en">English</option><option value="pt">Português</option></select></label>
   <label>Webcam <select id="cam"><option value="">config.js</option><option value="16:9">16:9 wide</option><option value="4:3">4:3</option><option value="1:1">1:1 square</option><option value="9:16">9:16 vertical</option></select></label>
-  <label><input type="checkbox" id="slots" checked> Show slots (webcam, chat, alerts)</label>
+  <label><input type="checkbox" id="slots" checked> Show slots (webcam, chat)</label>
   <label><input type="checkbox" id="game" checked> Simulated game background</label>
   <button class="ghost" id="reload">Reload</button>
 </header>
+<div class="demo" id="demo" hidden>Live demo hosted on GitHub Pages. Try the presets, effects, language and webcam shape above. To use these overlays, <a href="https://github.com/jnsdias/obs-overlay-packs/archive/refs/heads/main.zip">download the pack</a> and edit <code>config.js</code> on your computer. <a href="https://github.com/jnsdias/obs-overlay-packs">Repository</a></div>
 <main id="grid"></main>
 <dialog id="dlg"><div class="stage" id="big" style="width:min(96vw,1700px)"></div></dialog>
 <div id="toast">Path copied</div>
@@ -76,5 +79,6 @@ document.getElementById("dlg").onclick = e => { if (e.target.id === "dlg") e.tar
 ["slots","game","lang","cam","preset","fx"].forEach(i => document.getElementById(i).onchange = render);
 document.getElementById("reload").onclick = render;
 render();
+if (/^https?:/.test(location.protocol)) document.getElementById("demo").hidden = false;
 </script>
 </body></html>

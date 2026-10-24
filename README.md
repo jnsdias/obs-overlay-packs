@@ -4,6 +4,8 @@ Animated, editable overlays for OBS Studio and Streamlabs Desktop. Plain HTML, C
 
 Versão em português: cada pacote tem um `LEIAME.pt-BR.md`.
 
+**[Live preview](https://jnsdias.github.io/obs-overlay-packs/)** of both packs in your browser (a demo; to use the overlays, download them).
+
 ## Packs
 
 | Pack | Style | Folder |

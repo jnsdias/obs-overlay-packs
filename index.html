@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stream Overlays — live preview</title>
+<style>
+  :root { --bg:#0e0e14; --card:#16161f; --line:#2a2a3a; --text:#e8e8f0; --muted:#8e8ea3; --accent:#7c5cff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.5 system-ui,sans-serif; }
+  main { max-width:1000px; margin:0 auto; padding:48px 20px; }
+  h1 { margin:0 0 8px; font-size:30px; }
+  p { color:var(--muted); margin:0 0 28px; max-width:62ch; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; }
+  a.card { display:block; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; color:inherit; text-decoration:none; transition:border-color .15s; }
+  a.card:hover { border-color:var(--accent); }
+  a.card img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; }
+  .card div { padding:14px 18px 18px; }
+  .card h2 { margin:0 0 4px; font-size:18px; } .card span { color:var(--muted); font-size:14px; }
+  .links { margin-top:32px; display:flex; flex-wrap:wrap; gap:12px; }
+  .links a { color:var(--text); border:1px solid var(--line); padding:10px 16px; border-radius:8px; text-decoration:none; }
+  .links a.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+</style></head>
+<body><main>
+  <h1>Stream Overlays</h1>
+  <p>Animated, editable overlays for OBS Studio and Streamlabs Desktop. Pick a pack to preview every scene in the browser. These pages are demos: to use the overlays, download the pack and edit <code>config.js</code> on your computer.</p>
+  <div class="grid">
+    <a class="card" href="generic/preview.html"><img src="images/generic-justchatting.jpg" alt="Clean pack preview"><div><h2>Clean pack</h2><span>5 color presets, adjustable effects</span></div></a>
+    <a class="card" href="terror/preview.html"><img src="images/terror-starting.jpg" alt="Horror pack preview"><div><h2>Horror pack</h2><span>Blood, flickering titles, Metal Mania font</span></div></a>
+  </div>
+  <div class="links">
+    <a class="primary" href="https://github.com/jnsdias/obs-overlay-packs/archive/refs/heads/main.zip">Download</a>
+    <a href="https://github.com/jnsdias/obs-overlay-packs">Repository</a>
+  </div>
+</main></body></html>
