@@ -1,0 +1,84 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Preview — Neon</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root { --bg:#0e0e14; --card:#16161f; --line:#2a2a3a; --text:#e8e8f0; --muted:#8e8ea3; --red:#7c5cff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.4 system-ui,sans-serif; }
+  header { padding:20px 28px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--bg); z-index:5; }
+  h1 { font-size:20px; margin:0 auto 0 0; letter-spacing:.08em; }
+  label { display:flex; gap:8px; align-items:center; color:var(--muted); cursor:pointer; }
+  button { background:var(--red); color:#fff; border:0; padding:8px 14px; border-radius:6px; cursor:pointer; font:inherit; }
+  button.ghost { background:transparent; border:1px solid var(--line); color:var(--text); }
+  main { padding:28px; display:grid; grid-template-columns:repeat(auto-fill,minmax(520px,1fr)); gap:28px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; }
+  .card h2 { margin:0 0 4px; font-size:16px; } .card p { margin:0 0 10px; color:var(--muted); font-size:13px; }
+  .stage { position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:6px; background:#000; cursor:zoom-in; }
+  .stage iframe { position:absolute; left:0; top:0; width:1920px; height:1080px; border:0; transform-origin:0 0; pointer-events:none; }
+  .game { position:absolute; inset:0; background:linear-gradient(135deg,#1d2a1b,#0d1710 45%,#2b2418); }
+  .game::after { content:"GAME"; position:absolute; inset:0; display:grid; place-items:center; font:900 220px system-ui; color:rgba(255,255,255,.05); }
+  .meta { color:var(--muted); font-size:12px; margin-top:8px; word-break:break-all; }
+  dialog { border:0; padding:0; background:#000; max-width:96vw; } dialog::backdrop { background:rgba(0,0,0,.85); }
+  .sim-cam,.sim-chat,.sim-alert { position:absolute; z-index:0; }
+  #toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--red); padding:10px 18px; border-radius:8px; opacity:0; transition:.3s; }
+  #toast.on { opacity:1; }
+  .demo { background:var(--card); border-bottom:1px solid var(--line); padding:12px 28px; color:var(--muted); font-size:14px; }
+  .demo a { color:var(--text); }
+</style></head>
+<body>
+<header>
+  <h1>PREVIEW · NEON PACK</h1>
+  <label>Preset <select id="preset"><option value="">config.js</option><option value="cyan">Cyan</option><option value="magenta">Magenta</option><option value="lime">Lime</option><option value="amber">Amber</option><option value="violet">Violet</option></select></label>
+  <label>Effects <select id="fx"><option value="">config.js</option><option value="full">Full</option><option value="calm">Calm</option><option value="none">None</option></select></label>
+  <label>Language <select id="lang"><option value="">config.js</option><option value="en">English</option><option value="pt">Português</option></select></label>
+  <label>Webcam <select id="cam"><option value="">config.js</option><option value="16:9">16:9 wide</option><option value="4:3">4:3</option><option value="1:1">1:1 square</option><option value="9:16">9:16 vertical</option></select></label>
+  <label><input type="checkbox" id="slots" checked> Show slots (webcam, chat)</label>
+  <label><input type="checkbox" id="game" checked> Simulated game background</label>
+  <button class="ghost" id="reload">Reload</button>
+</header>
+<div class="demo" id="demo" hidden>Live demo hosted on GitHub Pages. Try the presets, effects, language and webcam shape above. To use these overlays, <a href="https://github.com/jnsdias/obs-overlay-packs/archive/refs/heads/main.zip">download the pack</a> and edit <code>config.js</code> on your computer. <a href="https://github.com/jnsdias/obs-overlay-packs">Repository</a></div>
+<main id="grid"></main>
+<dialog id="dlg"><div class="stage" id="big" style="width:min(96vw,1700px)"></div></dialog>
+<div id="toast">Path copied</div>
+<script>
+const scenes = [
+  { f:"starting.html", t:"Starting", d:"Countdown. Add ?min=10 to change the minutes." },
+  { f:"ingame.html",   t:"In game",   d:"Webcam frame and viewers / follower / sub cards.", game:true },
+  { f:"justchatting.html", t:"Just Chatting", d:"Big webcam, wide chat, viewers / follower / sub cards. Uses 2 sources: background (below) and frame (above).", bg:"justchatting-bg.html" },
+  { f:"brb.html",     t:"BRB",       d:"Be right back. See-through background shows what is behind.", game:true },
+  { f:"ending.html",   t:"Ending",    d:"Stream ended, with next schedule." }
+];
+const base = location.href.replace(/preview\.html.*$/, "");
+const grid = document.getElementById("grid");
+function build(host, s) {
+  host.innerHTML = (s.game && document.getElementById("game").checked ? '<div class="game"></div>' : "");
+  const frames = [];
+  if (s.bg) frames.push(mk(s.bg + "?x=1" + pq()));
+  frames.push(mk(s.f + "?slots=" + (document.getElementById("slots").checked ? 1 : 0) + lq() + cq() + pq()));
+  frames.forEach(f => host.appendChild(f));
+  const fit = () => frames.forEach(f => f.style.transform = "scale(" + host.clientWidth / 1920 + ")");
+  fit(); new ResizeObserver(fit).observe(host);
+}
+function pq() { const a = document.getElementById("preset").value, b = document.getElementById("fx").value; return (a ? "&preset=" + a : "") + (b ? "&fx=" + b : ""); }
+function cq() { const c = document.getElementById("cam").value; return c ? "&cam=" + c : ""; }
+function lq() { const l = document.getElementById("lang").value; return l ? "&lang=" + l : ""; }
+function mk(src) { const f = document.createElement("iframe"); f.src = src; return f; }
+function render() {
+  grid.innerHTML = "";
+  scenes.forEach(s => {
+    const c = document.createElement("div"); c.className = "card";
+    c.innerHTML = `<h2>${s.t}</h2><p>${s.d}</p><div class="stage"></div>
+      <div class="meta">OBS browser source: <code>${base}${s.f}</code> · 1920×1080${s.bg ? `<br>Background (bottom layer): <code>${base}${s.bg}</code>` : ""} <button class="ghost" style="padding:2px 8px;margin-left:6px">copy</button></div>`;
+    const st = c.querySelector(".stage");
+    build(st, s);
+    st.onclick = () => { const d = document.getElementById("dlg"), b = document.getElementById("big"); d.showModal(); build(b, s); };
+    c.querySelector("button").onclick = () => { navigator.clipboard.writeText(base.replace("file:///","") + s.f); const t = document.getElementById("toast"); t.classList.add("on"); setTimeout(()=>t.classList.remove("on"),1200); };
+    grid.appendChild(c);
+  });
+}
+document.getElementById("dlg").onclick = e => { if (e.target.id === "dlg") e.target.close(); };
+["slots","game","lang","cam","preset","fx"].forEach(i => document.getElementById(i).onchange = render);
+document.getElementById("reload").onclick = render;
+render();
+if (/^https?:/.test(location.protocol)) document.getElementById("demo").hidden = false;
+</script>
+</body></html>
