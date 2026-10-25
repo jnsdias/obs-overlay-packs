@@ -4,7 +4,7 @@
 
 Overlays animados e editáveis para OBS Studio e Streamlabs Desktop. HTML, CSS e JavaScript puros, então não há nada para instalar: adicione cada arquivo como Fonte de Navegador e edite um único `config.js` para deixar tudo com a sua cara.
 
-**[Prévia ao vivo](https://jnsdias.github.io/obs-overlay-packs/)** dos três pacotes no navegador (é uma demonstração; para usar os overlays, baixe os arquivos).
+**[Prévia ao vivo](https://jnsdias.github.io/obs-overlay-packs/)** dos quatro pacotes no navegador (é uma demonstração; para usar os overlays, baixe os arquivos).
 
 ## Pacotes
 
@@ -12,6 +12,7 @@ Overlays animados e editáveis para OBS Studio e Streamlabs Desktop. HTML, CSS e
 |---|---|---|
 | **Clean** | Neutro e moderno, 5 presets de cor, efeitos ajustáveis | [`generic/`](generic) |
 | **Neon** | Tubos de neon brilhantes, 5 presets de cor neon | [`neon/`](neon) |
+| **Sunset** | Pôr do sol retrô: céu em degradê, sol listrado, palmeiras, chão de grade neon | [`sunset/`](sunset) |
 | **Horror** | Sangue, títulos piscando, fonte Metal Mania | [`terror/`](terror) |
 
 Todos trazem as mesmas cenas: Iniciando (com contagem regressiva), Em jogo, Just Chatting, Já volto (translúcido) e Fim da transmissão, mais fundos de alerta em loop (800×150) para Streamlabs ou StreamElements.
@@ -40,6 +41,18 @@ Cinco presets neon (ciano, magenta, lima, âmbar e violeta), também com uma lin
 |---|---|
 | ![Neon, Em jogo](images/neon-ingame.jpg) | ![Neon, Just Chatting](images/neon-justchatting.jpg) |
 
+### Sunset
+
+![Pacote Sunset, Iniciando](images/sunset-starting.jpg)
+
+Cinco presets (sunset, miami, dusk, palm, night), e dá para mudar as cores do céu no `config.js`:
+
+![Presets do pacote Sunset](images/sunset-presets.jpg)
+
+| Em jogo | Just Chatting |
+|---|---|
+| ![Sunset, Em jogo](images/sunset-ingame.jpg) | ![Sunset, Just Chatting](images/sunset-justchatting.jpg) |
+
 ### Horror
 
 ![Pacote Horror, Iniciando](images/terror-starting.jpg)
@@ -62,12 +75,13 @@ O guia completo está no README de cada pacote: ordem das camadas, tamanhos dos 
 
 - [README do pacote Clean](generic/LEIAME.pt-BR.md)
 - [README do pacote Neon](neon/LEIAME.pt-BR.md)
+- [README do pacote Sunset](sunset/LEIAME.pt-BR.md)
 - [README do pacote Horror](terror/LEIAME.pt-BR.md)
 
 ## O que dá para mudar no `config.js`
 
-Idioma (inglês ou português), nome e @ do canal, texto do horário, formato da webcam (16:9, 4:3, 1:1, 9:16), todas as frases de todas as cenas e, nos pacotes Clean e Neon, preset de cor, cores próprias e nível de efeitos. Tudo o que você edita é texto simples.
+Idioma (inglês ou português), nome e @ do canal, texto do horário, formato da webcam (16:9, 4:3, 1:1, 9:16), todas as frases de todas as cenas e, nos pacotes Clean, Neon e Sunset, preset de cor, cores próprias e nível de efeitos. Tudo o que você edita é texto simples.
 
 ## Licença
 
-Cada pacote tem o seu `LICENSE.txt` (em inglês). As fontes seguem a SIL Open Font License 1.1 (Rajdhani nos pacotes Clean e Neon, Metal Mania no Horror); as licenças delas ficam na pasta `fonts` de cada pacote.
+Cada pacote tem o seu `LICENSE.txt` (em inglês). As fontes seguem a SIL Open Font License 1.1 (Rajdhani nos pacotes Clean, Neon e Sunset, Kanit no Sunset, Metal Mania no Horror); as licenças delas ficam na pasta `fonts` de cada pacote.

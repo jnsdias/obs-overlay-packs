@@ -4,7 +4,7 @@
 
 Animated, editable overlays for OBS Studio and Streamlabs Desktop. Plain HTML, CSS and JavaScript, so there is nothing to install: add each file as a Browser Source and edit one `config.js` to make it yours.
 
-**[Live preview](https://jnsdias.github.io/obs-overlay-packs/)** of all three packs in your browser (a demo; to use the overlays, download them).
+**[Live preview](https://jnsdias.github.io/obs-overlay-packs/)** of all four packs in your browser (a demo; to use the overlays, download them).
 
 ## Packs
 
@@ -12,6 +12,7 @@ Animated, editable overlays for OBS Studio and Streamlabs Desktop. Plain HTML, C
 |---|---|---|
 | **Clean** | Neutral and modern, 5 color presets, adjustable effects | [`generic/`](generic) |
 | **Neon** | Glowing neon tubes, 5 neon color presets | [`neon/`](neon) |
+| **Sunset** | Retro sunset: gradient sky, striped sun, palms, neon grid floor | [`sunset/`](sunset) |
 | **Horror** | Blood, flickering titles, Metal Mania font | [`terror/`](terror) |
 
 All packs include the same scenes: Starting Soon (with countdown), In Game, Just Chatting, Be Right Back (see-through) and Stream Ended, plus looping alert backgrounds (800×150) for Streamlabs or StreamElements.
@@ -40,6 +41,18 @@ Five neon presets (cyan, magenta, lime, amber, violet), also one line in `config
 |---|---|
 | ![Neon, In Game](images/neon-ingame.jpg) | ![Neon, Just Chatting](images/neon-justchatting.jpg) |
 
+### Sunset
+
+![Sunset pack, Starting Soon](images/sunset-starting.jpg)
+
+Five presets (sunset, miami, dusk, palm, night), and you can change the sky colors in `config.js`:
+
+![Sunset pack presets](images/sunset-presets.jpg)
+
+| In Game | Just Chatting |
+|---|---|
+| ![Sunset, In Game](images/sunset-ingame.jpg) | ![Sunset, Just Chatting](images/sunset-justchatting.jpg) |
+
 ### Horror
 
 ![Horror pack, Starting Soon](images/terror-starting.jpg)
@@ -62,12 +75,13 @@ The full guide is in each pack's README: layer order, slot sizes, webcam shapes,
 
 - [Clean pack README](generic/README.md)
 - [Neon pack README](neon/README.md)
+- [Sunset pack README](sunset/README.md)
 - [Horror pack README](terror/README.md)
 
 ## What you can change in `config.js`
 
-Language (English or Portuguese), channel name and handle, schedule text, webcam shape (16:9, 4:3, 1:1, 9:16), every phrase on every scene and, in the Clean and Neon packs, color preset, custom colors and effect level. Anything you edit is plain text.
+Language (English or Portuguese), channel name and handle, schedule text, webcam shape (16:9, 4:3, 1:1, 9:16), every phrase on every scene and, in the Clean, Neon and Sunset packs, color preset, custom colors and effect level. Anything you edit is plain text.
 
 ## License
 
-Each pack has its own `LICENSE.txt`. Fonts are under the SIL Open Font License 1.1 (Rajdhani in the Clean and Neon packs, Metal Mania in the Horror pack); their licenses are in each pack's `fonts` folder.
+Each pack has its own `LICENSE.txt`. Fonts are under the SIL Open Font License 1.1 (Rajdhani in the Clean, Neon and Sunset packs, Kanit in the Sunset pack, Metal Mania in the Horror pack); their licenses are in each pack's `fonts` folder.
